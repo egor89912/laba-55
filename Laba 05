@@ -1,0 +1,29 @@
+using System;
+using System.IO;
+
+
+
+
+namespace Boo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string path = @"C:\Users\Егор\Desktop\1txt";
+
+            string Aboba = "PAsziloi jmih";
+
+
+            FileStream file = new FileStream(path,FileMode.Append);
+
+            StreamWriter stream = new StreamWriter(file);
+
+            stream.Write("Aboba");
+
+            Console.ReadKey();
+
+                
+        }
+    }
+}
