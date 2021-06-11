@@ -1,0 +1,49 @@
+using System;
+using System.IO;
+
+
+namespace Collections
+
+        static void Main(string[] args)
+            dict.Add("чувства", "чуства");
+            string filepath = @"C:\Users\Егор\Desktop\1txt";     
+            string fileText = "";
+            string findNumber = @".012.";
+            string replaceNumber = "+380 12";
+
+            var files = Directory.GetFiles(filepath);
+            foreach (var file in files)
+            {
+                Console.WriteLine(file);
+                foreach (KeyValuePair<string, string> entry in dict)
+                {
+                    Regex regex = new Regex(entry.Value);// regex работа с шаблонами по тексту
+                    MatchCollection matches = regex.Matches(entry.Value);//Matches ищет совпадения
+                    foreach (var match in matches)
+                    {
+                        Console.WriteLine(match);
+                    }
+                }
+            foreach (var file in files)
+            {
+                Console.WriteLine(file);
+
+                using (StreamReader sr = File.OpenText(file))
+                {
+                    fileText = sr.ReadToEnd();
+                }
+
+                foreach (KeyValuePair<string, string> entry in dict)
+                {
+                    fileText = fileText.Replace(entry.Value, entry.Key);
+                    Regex regex = new Regex(findNumber);
+                    MatchCollection matches = regex.Matches(fileText);
+                    fileText = regex.Replace(fileText, replaceNumber, 10);
+
+                    using (StreamWriter sw = new StreamWriter(file))
+                    {
+                        sw.Write(fileText);
+                    }
+                }
+            }
+        }
